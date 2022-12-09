@@ -1,7 +1,19 @@
 import Head from "next/head";
 import Image from "next/image";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { Toaster } from "react-hot-toast";
+import { useAccount } from "wagmi";
+import { useEffect, useState } from "react";
+import MainView from "../components/MainView";
 
 export default function Home() {
+  const [userAccount, setUserAccount] = useState("");
+  const { address } = useAccount();
+
+  useEffect(() => {
+    setUserAccount(address);
+  }, [address]);
+
   return (
     <div className="">
       <Head>
@@ -10,7 +22,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1>WEB3 TIKTOK</h1>
+      <div className="overflow-hidden flex flex-col justify-center items-center spacex-x-2 space-y-4 h-screen w-screen">
+        <Toaster position="top-center" />
+        <ConnectButton />
+
+        {userAccount && (
+          <div className="app bg-[#2c2d30] flex items-center justify-center">
+            <MainView />
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -19,8 +19,9 @@ contract("TikTok", async (accounts) => {
       let createVideo = await tiktok.createVideo(video.caption, video.url);
       let videoCount = await tiktok.videoCount();
       let videos = await tiktok.videos(videoCount);
-      console.log(videos);
-      console.log(typeof videoCount);
+      let getvideo = await tiktok.getVideo();
+      assert(getvideo.length === 1);
+      assert[videos[videoCount].caption === video.caption];
     });
   });
 });
