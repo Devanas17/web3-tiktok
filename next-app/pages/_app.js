@@ -1,7 +1,7 @@
 import "../styles/globals.css";
-import { TiktokProvider } from "../context/context";
-import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
+import { AppProvider } from "../context/context";
 import "@rainbow-me/rainbowkit/styles.css";
+import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 
 import {
   getDefaultWallets,
@@ -19,14 +19,14 @@ const { chains, provider } = configureChains(
     jsonRpcProvider({
       priority: 2,
       rpc: (chain) => ({
-        http: `HTTP://127.0.0.1:8545`,
+        http: `HTTP://127.0.0.1:7545`,
       }),
     }),
   ]
 );
 
 const { connectors } = getDefaultWallets({
-  appName: "TikTok",
+  appName: "Instagram",
   chains,
 });
 
@@ -40,9 +40,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <WagmiConfig client={wagmiClient}>
       <RainbowKitProvider chains={chains} theme={darkTheme()} coolMode>
-        <TiktokProvider>
+        <AppProvider>
           <Component {...pageProps} />
-        </TiktokProvider>
+        </AppProvider>
       </RainbowKitProvider>
     </WagmiConfig>
   );

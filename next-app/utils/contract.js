@@ -1,7 +1,8 @@
-// import ContractABI from './Tiktok.json'
+import ContractABI from "./Tiktok.json";
 import Web3 from "web3";
 
-export const address = "0x66C1Bd403f104Ca4d9392cb1458F097bbb6A8F06";
+export const address = "0xd46b34e3350af6EE0BdA109AbC50F50347275898";
+//
 
 export const createContract = () => {
   const { ethereum } = window;
